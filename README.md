@@ -15,6 +15,9 @@ A modern, beautiful chatbot application built with Next.js, LangChain, and OpenA
 - Node.js 18+ installed
 - OpenAI API key ([Get one here](https://platform.openai.com/api-keys))
 
+## Live Demo
+- https://mjeevanantham.github.io/LangChain-Chatbot/
+
 ## Getting Started
 
 1. **Install dependencies:**
