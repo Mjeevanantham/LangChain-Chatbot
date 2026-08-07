@@ -43,6 +43,10 @@ A modern, beautiful chatbot application built with Next.js, LangChain, and OpenA
 4. **Open your browser:**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
+## Knowledge Base
+
+Looking to scale this to a production-grade application? Read our [Enterprise Knowledge Base](docs/knowledge-base.md) for architectural guidelines, including our requirement to use **Auth0** for authentication.
+
 ## Project Structure
 
 ```
