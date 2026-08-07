@@ -6,9 +6,16 @@ export async function POST(request: NextRequest) {
   try {
     const { message } = await request.json();
 
-    if (!message) {
+    if (!message || typeof message !== 'string') {
       return NextResponse.json(
-        { error: 'Message is required' },
+        { error: 'Message is required and must be a string' },
+        { status: 400 }
+      );
+    }
+
+    if (message.length > 4000) {
+      return NextResponse.json(
+        { error: 'Message exceeds the maximum length of 4000 characters' },
         { status: 400 }
       );
     }
