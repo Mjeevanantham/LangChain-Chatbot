@@ -31,6 +31,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // SSRF Protection: Ensure protocol is HTTP/HTTPS
+    if (validUrl.protocol !== 'http:' && validUrl.protocol !== 'https:') {
+      return NextResponse.json(
+        { error: 'Only HTTP and HTTPS protocols are allowed' },
+        { status: 400 }
+      );
+    }
+
+    // SSRF Protection: Block internal and local addresses
+    const hostname = validUrl.hostname.toLowerCase();
+    const blockedHostnames = ['localhost', '127.0.0.1', '0.0.0.0', '::1'];
+
+    if (blockedHostnames.includes(hostname) || hostname.endsWith('.local') || hostname.endsWith('.internal')) {
+      return NextResponse.json(
+        { error: 'Access to internal network is prohibited' },
+        { status: 403 }
+      );
+    }
+
     // Fetch the webpage
     const response = await fetch(validUrl.toString(), {
       headers: {
